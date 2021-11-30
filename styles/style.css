@@ -1,0 +1,39 @@
+html {
+	font-size: 15pt;
+	background-color: black;
+	color: white;
+}
+
+body {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+p.dagboek {
+	background-color: wheat;
+	padding: 5px;	
+	color: darkred;
+	font-family: "Chiller", "Papyrus", sans-serif;
+	font-size: 22pt;
+}
+
+p.warning {
+	background-color: yellow;
+	padding: 5px;	
+	font-size: 18pt;
+	font-style: arial;
+	color: black;
+	font-family: "Courier New", "Courier", serif;
+	text-shadow: 2px 2px 5px gray;
+}
+
+p.error {
+	background-color: red;
+	padding: 5px;	
+	font-size: 18pt;
+	font-style: bold;
+	color: black;
+	font-family: "Courier New", "Courier", serif;
+	text-shadow: 2px 2px 5px gray;
+}
