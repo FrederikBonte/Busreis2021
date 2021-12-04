@@ -15,6 +15,7 @@ require_once "common/debug.php";
 		$name = $_REQUEST["bname"];
 		$country = $_REQUEST["bcountry"];
 		add_bestemming($bianca, $name, $country);
+		
 	}
 	else if (array_key_exists("update", $_REQUEST))
 	{
@@ -23,6 +24,12 @@ require_once "common/debug.php";
 		$country = $_REQUEST["bcountry"];
 		$deleted = array_key_exists("deleted", $_REQUEST)?"1":"0";
 		update_bestemming($bianca, $name, $country, $deleted);
+	} 
+	else if (array_key_exists("delete", $_REQUEST))
+	{
+?>
+		<p class="error">NEVER DELETE ANYTHING YOU WEIRDO!!!</p>
+<?php
 	}
 
 	print_bestemmingen();

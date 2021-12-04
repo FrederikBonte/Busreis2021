@@ -2,6 +2,17 @@
 <html>
 <head>
 	<title>Frederiks Busreis pagina</title>
-	<link rel="stylesheet" type="text/css" href="styles/style.css" />
+	<link rel="stylesheet" type="text/css" href="styles/dark.css" />
+	<script type="text/javascript" src="js/style_toggle.js"></script>
 </head>
 <body>
+	<div id="navbar">
+		<h1><img src="images/logo.png" width="200px" />Busreis 2021<img src="images/logo.png" width="200px" /></h1>
+		<ul>
+			<li><a href="/busreis">Home</a></li>
+			<li><a href="/busreis/reizen.php">Reizen</a></li>
+			<li><a href="/busreis/bestemmingen.php">Bestemmingen</a></li>
+			<li><a href="/busreis/chauffeurs.php">Chauffeurs</a></li>
+			<li onclick="toggleTheme();">Toggle style</li>
+		</ul><br />
+	</div>

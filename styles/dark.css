@@ -12,7 +12,8 @@ body {
 
 div#navbar 
 {
-	background-color: white;	
+	background-color: white;
+	box-shadow: 2px 2px 5px gray;	
 }
 
 div#navbar h1
@@ -37,5 +38,23 @@ div#navbar ul li
 	padding-right:20px;
 	box-shadow: 2px 2px 5px black;
 	margin-left: 10px;
+	color: darkblue;
+	
+	background-color: lightblue;
 }
 
+.warning {
+	background-color: lightyellow;
+	font: "Courier New", serif;
+	font-style: italic;
+	color: darkblue;
+	padding: 10px;
+}
+
+.error {
+	background-color: red;
+	font: "Courier New", serif;
+	font-weight: bolder;
+	color: darkblue;
+	padding: 10px;
+}

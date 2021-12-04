@@ -6,6 +6,11 @@ function print_reizen()
 {
 	global $database;
 	
+	// read the destination and the driver table only once into this object.
+	// Each is responsible for printing the select one structure.
+	$BS = new DestinationSelector();
+	$CS = new DriverSelector();
+	
 	$sql = "SELECT * FROM reis";
 	debug_log($sql);
 	
@@ -18,15 +23,15 @@ function print_reizen()
 	
 	while ($record = $stmt->fetch(PDO::FETCH_ASSOC))
 	{
-		print_reis($record);
+		print_reis($record, $BS, $CS);
 	}
 ?>
 	<form method="POST">
 	<tr>
 		<td></td>
-		<td><?php print_select_bestemming(); ?></td>
-		<td><?php print_select_chauffeur(); ?></td>
-		<td><input type="date" name="datum" pattern="\d{4}-\d{2}-\d{2}" /></td>
+		<td><?php $BS->print_select_destination(); ?></td>
+		<td><?php $CS->print_select_driver(); ?></td>
+		<td><input type="date" name="date" pattern="\d{4}-\d{2}-\d{2}" /></td>
 		<td><button name="add" type="submit">Toevoegen</button></td>
 	</tr>
 	</form>
@@ -34,7 +39,7 @@ function print_reizen()
 <?php
 }
 
-function print_reis($record)
+function print_reis($record, $BS, $CS)
 {
 	//debug_dump($record);
 	
@@ -46,8 +51,8 @@ function print_reis($record)
 	<form method="POST">
 	<tr>
 		<td><input type="hidden" name="number" value="<?=$number?>" /><?=$number?></td>
-		<td><?php print_select_bestemming($destination); ?></td>
-		<td><?php print_select_chauffeur($driver); ?></td>
+		<td><?php $BS->print_select_destination($destination); ?></td>
+		<td><?php $CS->print_select_driver($driver); ?></td>
 		<td><input type="date" required name="date" value="<?=$date?>" /></td>
 		<td><button name="update" type="submit">Wijzigen</button></td>
 	</tr>
@@ -55,80 +60,73 @@ function print_reis($record)
 <?php
 }
 
-function add_reis($code, $name, $phone)
+function add_reis($driver, $destination, $date)
 {
 	global $database;
 
-	$sql = "INSERT INTO chauffeur (code, naam, telefoonnummer) VALUES (:id, :field1, :field2)";
+	$sql = "INSERT INTO reis (chauffeurscode, bestemmingscode, date) VALUES (:field1, :field2, :field3)";
 	debug_log($sql);
 	
 	$stmt = $database->prepare($sql);	
 	
 	$data = [
-		"id" => $code,
-		"field1" => $name,
-		"field2" => $phone
+		"field1" => $driver,
+		"field2" => $destination,
+		"field3" => $date
 	];
 	
 	try {
 		
 		if ($stmt->execute($data))
 		{
-			echo "Chauffeur toegevoegd.";
+			echo "Reis toegevoegd.";
 		}
 		else
 		{
-			debug_warning("Chauffeur niet toegevoegd.");
+			debug_warning("Reis niet toegevoegd.");
 		}
 	} 
 	catch (Exception $ex)
 	{
-		if ($ex->getCode()==23000)
-		{
-			debug_warning("Chauffeur niet toegevoegd, omdat een andere chauffeur dezelfde code gebruikt: '$code'");
-		}
-		else 
-		{
-		//print_r($ex);
-		
-			debug_error("Failed to add chauffeur because ", $ex);
-		}
+		debug_error("Failed to add reis because ", $ex);
 	}
 	
 }
 
-function update_reis($code, $name, $phone)
+function update_reis($number, $driver, $destination, $date)
 {
 	global $database;
 
 	$sql = 
-		"UPDATE chauffeur ".
-		"SET naam=:field1, ".
-		"    telefoonnummer=:field2 ".
-		"WHERE code=:id";
+		"UPDATE reis ".
+		"SET chauffeurscode=:field1, ".
+		"    bestemmingscode=:field2, ".
+		"    date=:field3 ".
+		"WHERE reisnummer=:id";
 	debug_log($sql);
 	
 	$stmt = $database->prepare($sql);	
 	
 	$data = [
-		"id" => $code,
-		"field1" => $name,
-		"field2" => $phone,
+		"id" => $number,
+		"field1" => $driver,
+		"field2" => $destination,
+		"field3" => $date
 	];
 	
 	try {		
 		if ($stmt->execute($data))
 		{
-			echo "Chauffeur gewijzigd.";
+			echo "Reis gewijzigd.";
 		}
 		else
 		{
-			debug_warning("Chauffeur niet gewijzigd.");
+			debug_warning("Reis niet gewijzigd.");
 		}	
 	}
 	catch (Exception $ex)
 	{
-		debug_error("Failed to add chauffeur because ", $ex);
+		debug_error("Failed to update reis because ", $ex);
 	}
 }
 ?>

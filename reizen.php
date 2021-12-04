@@ -10,22 +10,23 @@ require_once "common/debug.php";
 <?php
 
 	debug_dump($_REQUEST);
-/*
+
 	if (array_key_exists("add", $_REQUEST))
 	{
-		$bianca = $_REQUEST["dcode"];
-		$name = $_REQUEST["dname"];
-		$phone = $_REQUEST["dphone"];
-		add_chauffeur($bianca, $name, $phone);
+		$driver = $_REQUEST["driver"];
+		$destination = $_REQUEST["destination"];
+		$date = $_REQUEST["date"];
+		add_reis($driver, $destination, $date);
 	}
 	else if (array_key_exists("update", $_REQUEST))
 	{
-		$bianca = $_REQUEST["dcode"];
-		$name = $_REQUEST["dname"];
-		$phone = $_REQUEST["dphone"];
-		update_chauffeur($bianca, $name, $phone);
+		$number = $_REQUEST["number"];
+		$driver = $_REQUEST["driver"];
+		$destination = $_REQUEST["destination"];
+		$date = $_REQUEST["date"];
+		update_reis($number, $driver, $destination, $date);
 	}
-*/
+
 	print_reizen();
 ?>
 </body>
