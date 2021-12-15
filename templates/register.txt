@@ -1,0 +1,16 @@
+<h1>Vul uw registratie in en ga mee op onze reis!</h1>
+<form method="POST">
+<table>
+	<tr><th colspan="2">Persoonlijke gegevens</th></tr>
+	<tr><td>Roepnaam</td><td><input type="text" name="rnaam" required /></td></tr>
+	<tr><td>Achternaam</td><td><input type="text" name="anaam" required /></td></tr>
+	<tr><td>Postcode</td><td><input type="text" name="postcode" required /></td></tr>
+	<tr><td>Huisnummer</td><td><input type="text" name="hnummer" required /></td></tr>
+	<tr><td>Telefoon</td><td><input type="text" name="telefoon" required /></td></tr>
+	<tr><th colspan="2">Inlog gegevens</th></tr>
+	<tr><td>Gebruikersnaam</td><td><input type="text" name="username" required /></td></tr>
+	<tr><td>Wachtwoord 1</td><td><input id="pwd1" type="password" name="password1" required /></td></tr>
+	<tr><td>Wachtwoord 2</td><td><input id="pwd2" type="password" name="password2" required /></td></tr>
+	<tr><td colspan="2"><button type="submit" name="register">Registreren</button></td></tr>
+</table>	
+</form>

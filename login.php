@@ -26,11 +26,13 @@ if (array_key_exists("login", $_REQUEST))
 }
 
 ?>
-<form action="login.php">
-	Username: <input type="text" name="username" /><br />
-	Password: <input type="password" name="password" />
-	<input type="submit" name="login" value="Inloggen" />
-</form>
+	<h1>Inloggen</h1>
+	<form action="login.php">
+		Username: <input type="text" name="username" /><br />
+		Password: <input type="password" name="password" />
+		<input type="submit" name="login" value="Inloggen" />
+	</form>
+	<h2><a href="register.php">Ik heb nog geen account</a></h2>
 </body>
 </html>
 <?php
